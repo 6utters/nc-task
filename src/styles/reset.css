@@ -10,11 +10,11 @@
     box-sizing: border-box;
 }
 
-a, a:link, a:visited  {
+a, a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover  {
+a:hover {
     text-decoration: none;
 }
 
@@ -46,7 +46,6 @@ address {
 
 input, textarea, button, select {
     font-family: inherit;
-    font-size: inherit;
     color: inherit;
     background-color: transparent;
 }

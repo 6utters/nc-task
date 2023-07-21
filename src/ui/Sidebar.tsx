@@ -13,7 +13,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       component={'aside'}
       padding={2}
       sx={{
-        width,
+        minWidth: width,
         height: '100vh',
         borderRight: 1, borderColor: 'divider'
       }}
