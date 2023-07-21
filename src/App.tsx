@@ -1,7 +1,10 @@
-function App() {
+import { MainLayout } from './layouts/MainLayout'
+import { AppRouter } from '@/providers/router/AppRouter'
+
+export const App = () => {
   return (
-      <h1>Here's going to be an app</h1>
+    <MainLayout>
+      <AppRouter />
+    </MainLayout>
   )
 }
-
-export default App
