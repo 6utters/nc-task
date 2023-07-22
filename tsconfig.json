@@ -6,6 +6,7 @@
     "noImplicitAny": true,
     "jsx": "react-jsx",
     "allowJs": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
