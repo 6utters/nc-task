@@ -1,0 +1,5 @@
+export type { NotesSchema, Note } from './model/types/NotesSchema'
+export { notesReducer, notesActions } from './model/slice/notesSlice'
+export { getNotes } from './model/selectors/getNotes'
+export { getNoteById } from './model/selectors/getNoteById'
+export { NoteField } from './ui/NoteFiled/NoteField'
