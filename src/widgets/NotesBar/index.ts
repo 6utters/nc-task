@@ -1,0 +1,1 @@
+export { NotesBar } from './ui/NotesBar'
