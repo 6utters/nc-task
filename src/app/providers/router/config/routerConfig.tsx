@@ -1,14 +1,21 @@
-import { AppRoutes, getRouteNote } from '@/shared/consts/router'
-import { RouteProps, Navigate } from 'react-router-dom'
+import { RouteProps, createBrowserRouter, Navigate } from 'react-router-dom'
+import { AppRoutes, getRouteNote } from '../consts/router'
 import { NotePage } from '@/pages/NotePage'
 
 export const routerConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.NOTE]: {
     path: getRouteNote(':id'),
-    children: <NotePage />
+    element: <NotePage />
   },
   [AppRoutes.NOT_FOUND]: {
     path: '*',
-    children: <Navigate to='/notes/1' replace />
+    element: <Navigate to='/notes/31241232352' replace />
   }
 }
+
+export const router = createBrowserRouter(
+  Object.values(routerConfig).map((route) => ({
+    path: route.path,
+    element: route.element
+  }))
+)

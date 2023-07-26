@@ -1,15 +1,34 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { getNotes } from './getNotes'
+import { notesSelector } from '..//slice/notesSlice'
+import { getIsWithTags, getSelectedTags } from '@/entities/Tag'
 import { Note } from '@/entities/Note'
 
-export const getFilteredNotes = (tags?: string[]) => createSelector(getNotes, (notes) => {
-  let result: Note[] = []
-  if (tags) {
-    for (let i = 0; i < notes.length; i++) {
-      if (tags.every(tag => notes[i].tags.includes(tag))) {
-        result.push(notes[i])
+export const getFilteredNotes = createSelector(
+  notesSelector.selectAll,
+  getSelectedTags,
+  getIsWithTags,
+  (notes, tags, withTags) => {
+    if (withTags) {
+      const notesWithTags: Note[] = []
+
+      notes.forEach((note) => {
+        if (note.tags.length > 0) {
+          notesWithTags.push(note)
+        }
+      })
+      return notesWithTags
+    } else {
+      if (tags.length !== 0) {
+        const filteredNotes: Note[] = []
+
+        for (let i = 0; i < notes.length; i++) {
+          if (tags.every((tag) => notes[i].tags.includes(tag))) {
+            filteredNotes.push(notes[i])
+          }
+        }
+        return filteredNotes
       }
+      return notes
     }
   }
-  return result
-})
+)

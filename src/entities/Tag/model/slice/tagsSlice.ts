@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TagsSchema } from '../types/TagsSchema'
-import { Note } from '@/entities/Note'
 
 const initialState: TagsSchema = {
   tags: [],
-  selectedTags: []
+  selectedTags: [],
+  withTags: false
 }
 
 const tagsSlice = createSlice({
@@ -15,19 +15,22 @@ const tagsSlice = createSlice({
       state.tags = action.payload
     },
     deleteTag: (state, action: PayloadAction<string>) => {
-      state.tags.filter(tag => tag !== action.payload)
+      state.tags.filter((tag) => tag !== action.payload)
     },
     selectTag: (state, action: PayloadAction<string>) => {
+      state.withTags = false
       state.selectedTags.push(action.payload)
     },
     unselectTag: (state, action: PayloadAction<string>) => {
-      state.selectedTags = state.selectedTags.filter(tag => tag !== action.payload)
+      state.selectedTags = state.selectedTags.filter((tag) => tag !== action.payload)
     },
-    selectAll: (state) => {
-      state.selectedTags = state.tags
-    },
-    unselectAll: (state) => {
-      state.selectedTags = []
+    toggleWithTags: (state) => {
+      if (state.withTags) {
+        state.withTags = false
+      } else {
+        state.selectedTags = []
+        state.withTags = true
+      }
     }
   }
 })
