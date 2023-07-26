@@ -15,8 +15,9 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       sx={{
         minWidth: width,
         maxWidth: width,
-        height: '100vh',
-        borderRight: 1, borderColor: 'divider'
+        height: 'calc(100vh - 44px)',
+        borderRight: 1,
+        borderColor: 'divider'
       }}
     >
       {children}

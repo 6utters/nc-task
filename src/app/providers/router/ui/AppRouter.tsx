@@ -1,16 +1,7 @@
-import { FC, memo } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { routerConfig } from '../config/routerConfig'
+import { FC } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '../config/routerConfig'
 
-export const AppRouter: FC = memo(() => {
-
-  return (
-    <Routes>{Object.values(routerConfig).map(route =>
-      <Route
-        key={route.path}
-        path={route.path}
-        element={route.children}
-      />
-    )}</Routes>
-  )
-})
+export const AppRouter: FC = () => {
+  return <RouterProvider router={router} />
+}

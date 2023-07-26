@@ -8,18 +8,24 @@ interface MainLayoutProps {
   children: ReactNode
 }
 
-const ASIDE_WIDTH = 350
+const TAGS_BAR_WIDTH = 260
+const NOTES_BAR_WIDTH = 320
 
 export const MainLayout: FC<MainLayoutProps> = (props) => {
   const { children } = props
   return (
-    <div className='main-layout'>
+    <Box sx={{ maxHeight: '100vh', maxWidth: '100vw', overflow: 'hidden' }}>
       <Header />
       <Box component={'main'} sx={{ display: 'flex' }}>
-        <TagsBar width={ASIDE_WIDTH} />
-        <NotesBar width={ASIDE_WIDTH} />
-        <section className={'content'}>{children}</section>
+        <TagsBar width={TAGS_BAR_WIDTH} />
+        <NotesBar width={NOTES_BAR_WIDTH} />
+        <Box
+          component={'section'}
+          sx={{ width: '100%', height: 'calc(100vh - 44px)', backgroundColor: 'primary.main', overflowY: 'hidden' }}
+        >
+          {children}
+        </Box>
       </Box>
-    </div>
+    </Box>
   )
 }

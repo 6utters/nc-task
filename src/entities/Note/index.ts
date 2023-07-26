@@ -1,5 +1,6 @@
 export type { NotesSchema, Note } from './model/types/NotesSchema'
 export { notesReducer, notesActions } from './model/slice/notesSlice'
-export { getNotes } from './model/selectors/getNotes'
-export { getNoteById } from './model/selectors/getNoteById'
+export { getFilteredNotes } from './model/selectors/getFilteredNotes'
+export { getNearbyNoteId } from './model/selectors/getNearbyNoteId'
 export { NoteField } from './ui/NoteFiled/NoteField'
+export { NoteList } from './ui/NoteList'

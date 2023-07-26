@@ -1,39 +1,26 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { Note, NotesSchema } from '../types/NotesSchema'
+import { StateSchema } from '@/app/providers/store'
 
-const initialState: NotesSchema = {
-  notes: []
-}
+const notesAdapter = createEntityAdapter<Note>({
+  selectId: (note) => note.id
+})
+
+export const notesSelector = notesAdapter.getSelectors<StateSchema>(
+  (state) => state.notes || notesAdapter.getInitialState()
+)
 
 const notesSlice = createSlice({
   name: 'notes',
-  initialState,
+  initialState: notesAdapter.getInitialState<NotesSchema>({
+    ids: [],
+    entities: {}
+  }),
   reducers: {
-    addNote: (state, action: PayloadAction<string>) => {
-      const newNote: Note = {
-        id: action.payload,
-        text: '',
-        tags: []
-      }
-      state.notes.push(newNote)
-    },
-    editNote: (state, action: PayloadAction<Note>) => {
-      const noteIndex = state.notes.findIndex(note => note.id === action.payload.id)
-      if (noteIndex == -1) {
-        return
-      }
-      const note = state.notes[noteIndex]
-      state.notes[noteIndex] = {
-        ...note,
-        ...action.payload
-      }
-    },
-    setNotes: (state, action: PayloadAction<Note[]>) => {
-      state.notes = action.payload
-    },
-    deleteNote: (state, action: PayloadAction<string>) => {
-      state.notes = state.notes.filter(note => note.id !== action.payload)
-    }
+    addNote: notesAdapter.addOne,
+    deleteNote: notesAdapter.removeOne,
+    setNotes: notesAdapter.setAll,
+    editNote: notesAdapter.updateOne
   }
 })
 

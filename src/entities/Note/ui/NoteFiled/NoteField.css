@@ -1,56 +1,50 @@
-.container, .backdrop, textarea {
+.container, .backdrop, .textarea {
     width: 100%;
     height: 100%;
 }
 
-.highlights, textarea {
-    font-size: 24px;
-    line-height: 1.4;
+.backdrop, .textarea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 24px 32px;
 }
 
 .container {
     background: transparent;
     position: relative;
     display: block;
+    z-index: 1500;
+    height: calc(100vh - 44px - 64px);
 }
 
 .backdrop {
-    position: absolute;
     z-index: 1;
-    overflow: auto;
     pointer-events: none;
-    transition: transform 1s;
-}
-
-.highlights {
     white-space: pre-wrap;
     word-wrap: break-word;
-    color: transparent;
+    color: black;
 }
 
-textarea {
-    position: absolute;
+.textarea {
     z-index: 2;
     flex-grow: 1;
     border: none;
-    overflow: auto;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    font-size: 24px;
-    line-height: 1.4;
     resize: none;
-    margin: 0;
-    border-radius: 0;
+    white-space: normal;
+    color: transparent;
+    caret-color: black;
 }
 
 mark {
-    border-radius: 3px;
-    color: transparent;
-    background: #fbb822;
+    color: #fbb822;
+    background: transparent;
 }
 
-.backdrop {
-    overflow: auto;
-}
